@@ -1,5 +1,5 @@
-// 商品のカテゴリ
-export type Category = 'shoes' | 'slothes' | 'book'
+// 商品カテゴリ
+export type Category = 'shoes' | 'clothes' | 'book'
 // 商品の状態
 export type Condition = 'new' | 'used'
 
@@ -7,7 +7,7 @@ export type Condition = 'new' | 'used'
 export type User = {
   id: number
   username: string
-  displayname: string
+  displayName: string
   email: string
   profileImageUrl: string
   description: string
@@ -16,6 +16,7 @@ export type User = {
 // 商品
 export type Product = {
   id: number
+  category: Category
   title: string
   description: string
   imageUrl: string
@@ -25,7 +26,7 @@ export type Product = {
   owner: User
 }
 
-// API Context
+// APIコンテキスト
 export type ApiContext = {
   apiRootUrl: string
 }

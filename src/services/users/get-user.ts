@@ -1,7 +1,10 @@
-import { ApiContext, User } from 'types/data'
+import type { ApiContext, User } from 'types'
 import { fetcher } from 'utils'
 
 export type GetUserParams = {
+  /**
+   * ユーザーID
+   */
   id: number
 }
 
@@ -11,25 +14,22 @@ export type GetUserParams = {
  * @param params パラメータ
  * @returns ユーザー
  */
-
-const getuser = async (
+const getUser = async (
   context: ApiContext,
   { id }: GetUserParams,
 ): Promise<User> => {
   /**
-   * ユーザAPI
-   * サンプルレスポンス
-   * 
-   *   
-   * {
+  // ユーザーAPI
+  // サンプルレスポンス
+  {
     "id": "1",
     "username": "taketo",
     "displayName": "Taketo Yoshida",
     "email": "taketo@example.com",
     "profileImageUrl": "/users/1.png",
-    "description": "Lorem ipsum is simply dummy text of the printing and typesetting industry"
-  } */
-
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+  }
+   */
   return await fetcher(
     `${context.apiRootUrl.replace(/\/$/g, '')}/users/${id}`,
     {
@@ -41,4 +41,4 @@ const getuser = async (
   )
 }
 
-export default getuser
+export default getUser
