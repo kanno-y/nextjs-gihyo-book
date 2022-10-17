@@ -6,7 +6,7 @@ module.exports = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
+    '@storybook/addon-postcss',
   ],
   staticDirs: ['public'],
   babel: async (options) => ({
@@ -17,12 +17,13 @@ module.exports = {
       '@babel/plugin-proposal-private-property-in-object',
     ],
   }),
-  webpackFinal: async (confing) => {
+  webpackFinal: async (config) => {
     config.resolve.plugins = [
       new TsconfigPathsPlugin({
         configFile: path.resolve(__dirname, '../tsconfig.json'),
       }),
     ]
+
     return config
   },
 }
