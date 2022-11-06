@@ -8,6 +8,7 @@ import ProductCardCarousel from 'components/organisms/ProductCardCarousel'
 import Layout from 'components/templates/Layout'
 import getAllProducts from 'services/products/get-all-products'
 import { ApiContext, Product } from 'types'
+import logger from 'utils/logger'
 
 type HomePageProps = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -18,7 +19,7 @@ const HomePage: NextPage<HomePageProps> = ({
 }: HomePageProps) => {
   // 商品カードカルーセルをレンダリング
   const renderProductCardCarousel = (products: Product[]) => {
-    console.log('HomePageコンポーネントの描画で呼ばれたログ')
+    logger.info('HomePageコンポーネントの描画で呼ばれたログ')
     return (
       <ProductCardCarousel>
         {products.map((p: Product, i: number) => (
@@ -114,7 +115,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const context: ApiContext = {
     apiRootUrl: process.env.API_BASE_URL || 'http://localhost:5000',
   }
-  console.log('getStaticProps内で呼ばれたログ')
+  logger.info('getStaticProps内で呼ばれたログ')
   // 各商品のトップ6個を取得し、静的ページを作成
   // 60秒でrevalidateな状態にし、静的ページを更新する
   const [clothesProducts, bookProducts, shoesProducts] = await Promise.all([
